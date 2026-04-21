@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Office Countdown</title>
+
+<style>
+html,body{
+margin:0;
+padding:0;
+background:black;
+color:white;
+height:100%;
+display:flex;
+justify-content:center;
+align-items:center;
+font-family:Arial, Helvetica, sans-serif;
+}
+
+#container{
+text-align:center;
+}
+
+#title{
+font-size:50px;
+margin-bottom:40px;
+letter-spacing:5px;
+}
+
+#timer{
+font-size:150px;
+font-weight:bold;
+}
+</style>
+
+</head>
+
+<body onclick="openFullscreen()">
+
+<div id="container">
+<div id="title">OFFICE COUNTDOWN</div>
+<div id="timer"></div>
+</div>
+
+<script>
+
+const endDate = new Date("April 21, 2027 00:00:00").getTime();
+
+function updateTimer(){
+
+const now = new Date().getTime();
+const distance = endDate - now;
+
+const days = Math.floor(distance/(1000*60*60*24));
+const hours = Math.floor((distance%(1000*60*60*24))/(1000*60*60));
+const minutes = Math.floor((distance%(1000*60*60))/(1000*60));
+const seconds = Math.floor((distance%(1000*60))/1000);
+
+document.getElementById("timer").innerHTML =
+days+"d "+hours+"h "+minutes+"m "+seconds+"s";
+
+}
+
+setInterval(updateTimer,1000);
+
+function openFullscreen(){
+let elem = document.documentElement;
+
+if(elem.requestFullscreen){
+elem.requestFullscreen();
+}
+}
+
+</script>
+
+</body>
+</html>
